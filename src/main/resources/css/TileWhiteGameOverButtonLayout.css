@@ -1,0 +1,5 @@
+.button {
+    -fx-font: 18px "Bold Italic";
+    -fx-font-fill: #000000;
+    -fx-background-color: #FFFFFF;
+}
