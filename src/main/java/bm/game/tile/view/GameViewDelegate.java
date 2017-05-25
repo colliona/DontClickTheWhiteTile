@@ -6,8 +6,10 @@ import javafx.scene.shape.Rectangle;
 
 public interface GameViewDelegate {
 
-	public EventHandler<? super MouseEvent> getBlackClickHandler(Rectangle rectangle);
+//	public EventHandler<? super MouseEvent> getBlackClickHandler(Rectangle rectangle);
+//
+//	public EventHandler<? super MouseEvent> getWhiteClickHandler();
 
-	public EventHandler<? super MouseEvent> getWhiteClickHandler();
-
+	public EventHandler<? super MouseEvent> getClickHandler();
+	
 }

@@ -3,7 +3,7 @@ package bm.game.tile.service;
 import java.util.Vector;
 
 public class GameService {
-	public static double getAverageClickTime(Vector<Double> timeDifferenceBetweenBlackTilesClickedInSeconds) {
+	public static double calculateAverageClickTime(Vector<Double> timeDifferenceBetweenBlackTilesClickedInSeconds) {
 
 		double sumOfSecondsBetweenClicks = 0;
 

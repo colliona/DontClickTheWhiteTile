@@ -24,6 +24,8 @@ public class Main extends Application {
 
 	private Stage primaryStage;
 	private GameController game;
+	private int tileWidth = 150;
+	private List<Row> rows;
 
 	public GameController getGame() {
 		return game;
@@ -31,6 +33,10 @@ public class Main extends Application {
 
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+	}
+
+	public List<Row> getRows() {
+		return rows;
 	}
 
 	@Override
@@ -105,6 +111,7 @@ public class Main extends Application {
 			Stage stage = new Stage();
 			Scene scene = new Scene(gameOverLayout);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setOnCloseRequest( event -> controller.closeButtonFunction());
 			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.show();
@@ -133,25 +140,29 @@ public class Main extends Application {
 				primaryStage.setMaximized(false);
 			}
 		});
-		
+
 		GamePlayData gamePlayData = new GamePlayData();
-		
-		int tileWidth = 150;
-		List<Tile> tiles1 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth), new Tile(300, tileWidth), new Tile(450, tileWidth));
-		List<Tile> tiles2 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth), new Tile(300, tileWidth), new Tile(450, tileWidth));
-		List<Tile> tiles3 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth), new Tile(300, tileWidth), new Tile(450, tileWidth));
-		List<Tile> tiles4 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth), new Tile(300, tileWidth), new Tile(450, tileWidth));
-		
-		Row row1 = new Row(-200, tiles1, 200);
-		Row row2 = new Row(0, tiles2, 200);
-		Row row3 = new Row(200, tiles3, 200);
-		Row row4 = new Row(400, tiles4, 200);
-		
-		List<Row> rows = Arrays.asList(row1, row2, row3, row4);
-		
+
+		List<Tile> tilesOfRow1 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth),
+				new Tile(300, tileWidth), new Tile(450, tileWidth));
+		List<Tile> tilesOfRow2 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth),
+				new Tile(300, tileWidth), new Tile(450, tileWidth));
+		List<Tile> tilesOfRow3 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth),
+				new Tile(300, tileWidth), new Tile(450, tileWidth));
+		List<Tile> tilesOfRow4 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth),
+				new Tile(300, tileWidth), new Tile(450, tileWidth));
+
+		Row row1 = new Row(-600, tilesOfRow1, 200);
+		Row row2 = new Row(-400, tilesOfRow2, 200);
+		Row row3 = new Row(-200, tilesOfRow3, 200);
+		Row row4 = new Row(0, tilesOfRow4, 200);
+
+		rows = Arrays.asList(row1, row2, row3, row4);
+
 		GameWindow gameWindow = new GameWindow(rows);
 
-		GameView gameView = new GameView(difficulty);
+		GameView gameView = new GameView(game);
+
 		game.setGameView(gameView, gameWindow);
 		Scene scene = new Scene(gameView, 600, 600);
 		primaryStage.setScene(scene);
