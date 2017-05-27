@@ -2,7 +2,6 @@ package bm.game.tile.view;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
 
 public interface GameViewDelegate {
 

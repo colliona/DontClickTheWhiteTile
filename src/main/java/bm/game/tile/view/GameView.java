@@ -16,19 +16,32 @@ public class GameView extends Group {
 	Canvas canvas;
 	GraphicsContext graphicsContext;
 
+	/**
+	 * Class constructor.
+	 * 
+	 * @param game - the controller of the next game 
+	 */
 	public GameView(GameController game) {
 		this.delegate = game;
 		setUp();
 	}
-
+	/**
+	 * 
+	 * @return - this view's reprezentative of the game controller
+	 */
 	public GameViewDelegate getDelegate() {
 		return delegate;
 	}
-
+	/**
+	 * 
+	 * @param delegate - this view's reprezentative of the game controller
+	 */
 	public void setDelegate(GameViewDelegate delegate) {
 		this.delegate = delegate;
 	}
-
+	/**
+	 * Initializes the game view.
+	 */
 	private void setUp() {
 		canvas = new Canvas(600, 600);
 		graphicsContext = canvas.getGraphicsContext2D();
@@ -37,7 +50,10 @@ public class GameView extends Group {
 		getChildren().add(canvas);
 
 	}
-
+	/**
+	 * Draws on the game window.
+	 * @param gameWindow - main window of the game
+	 */
 	public void draw(GameWindow gameWindow) {
 
 		for (Row row : gameWindow.getRows()) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -8,28 +9,34 @@
 
 <GridPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bm.game.tile.controller.MenuViewController">
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="200.0" />
-      <RowConstraints minHeight="10.0" prefHeight="200.0" />
-      <RowConstraints minHeight="10.0" prefHeight="200.0" />
+      <RowConstraints minHeight="10.0" prefHeight="75.0" />
+      <RowConstraints minHeight="10.0" prefHeight="175.0" />
+      <RowConstraints minHeight="10.0" prefHeight="175.0" />
+      <RowConstraints minHeight="10.0" prefHeight="175.0" />
    </rowConstraints>
    <columnConstraints>
       <ColumnConstraints minWidth="10.0" prefWidth="600.0" />
    </columnConstraints>
    <children>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#showDifficultyMenu" prefHeight="200.0" prefWidth="600.0" stylesheets="@../css/TileBlackMenuButtonLayout.css" text="Start Game" textAlignment="CENTER" textFill="WHITE">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#showDifficultyMenu" prefHeight="200.0" prefWidth="600.0" stylesheets="@../css/TileBlackMenuButtonLayout.css" text="Start Game" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#showAchievementMenu" prefHeight="200.0" prefWidth="600.0" stylesheets="@../css/TileWhiteMenuButtonLayout.css" text="Achievements" textAlignment="CENTER" GridPane.rowIndex="1">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#showAchievementMenu" prefHeight="200.0" prefWidth="600.0" stylesheets="@../css/TileWhiteMenuButtonLayout.css" text="Achievements" textAlignment="CENTER" GridPane.rowIndex="2">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="200.0" prefWidth="600.0" stylesheets="@../css/TileBlackMenuButtonLayout.css" text="Exit Game" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="200.0" prefWidth="600.0" stylesheets="@../css/TileBlackMenuButtonLayout.css" text="Exit Game" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
+      <TextField fx:id="playerName" alignment="CENTER" prefHeight="75.0" prefWidth="600.0" promptText="Enter Player Name Here" style="-fx-background-color: #FFFFFF;">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
    </children>
 </GridPane>

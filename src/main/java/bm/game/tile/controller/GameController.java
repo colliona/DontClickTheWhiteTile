@@ -1,9 +1,13 @@
 package bm.game.tile.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
 
+import bm.game.tile.DAO.GamePlayDataDAO;
+import bm.game.tile.model.GameplayData;
 import bm.game.tile.model.GameWindow;
 import bm.game.tile.model.GameWindowDelegate;
 import bm.game.tile.model.Row;
@@ -29,17 +33,12 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	private int difficultyMultiplier;
 	private int score = 0;
 	private int finalScore;
+	private String playerName;
 	private double averageOfClickSpeed;
 	private Vector<Double> timeDifferenceBetweenBlackTilesClickedInSeconds = new Vector<Double>();
 	private Date previousClickTime = null;
-
-	public int getFinalScore() {
-		return this.finalScore;
-	}
-
-	public double getAverageOfClickSpeed() {
-		return this.averageOfClickSpeed;
-	}
+	private GameplayData gameplayData;
+	private String difficulty;
 
 	/**
 	 * Class constructor.
@@ -55,6 +54,34 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 		this.gameWindow = gameWindow;
 	}
 
+
+	/**
+	 * 
+	 * @return the final score of the player
+	 */
+	public int getFinalScore() {
+		return this.finalScore;
+	}
+
+	/**
+	 * 
+	 * @return the average of time elapsed time between clicking two black
+	 *         tiles, in seconds
+	 * 
+	 */
+	public double getAverageOfClickSpeed() {
+		return this.averageOfClickSpeed;
+	}
+
+	/**
+	 * 
+	 * @param gameplayData
+	 *            - gameplay data
+	 */
+	public void setGameplayData(GameplayData gameplayData) {
+		this.gameplayData = gameplayData;
+	}
+
 	/**
 	 * Sets the details of the handling of the mouse click.
 	 */
@@ -65,12 +92,12 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 			if (isGameOver) {
 				return;
 			}
-			
+
 			for (Row row : mainApp.getRows()) {
 				if (!(row.getY() > maxY)) {
 					continue;
 				}
-				
+
 				if (row.wasItClicked() == false) {
 					maxY = row.getY();
 				}
@@ -84,7 +111,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 									actionOnBlackTile(row, tile);
 									return;
 								} else {
-									actionOnWhiteTile();
+									endThisGame();
 									return;
 								}
 							}
@@ -92,12 +119,17 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 					}
 				}
 			}
-			actionOnWhiteTile();
+			endThisGame();
 		};
 	}
 
 	/**
 	 * Executes action for black tiles.
+	 * 
+	 * @param row
+	 *            - the row of black tile
+	 * @param tile
+	 *            - the black tile
 	 */
 	private void actionOnBlackTile(Row row, Tile tile) {
 		row.setClicked(true);
@@ -119,9 +151,28 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	}
 
 	/**
-	 * Executes action for white tiles.
+	 * Rounds a double value.
+	 * 
+	 * @param value
+	 *            - the value
+	 * @param places
+	 *            - the place of the comma
+	 * @return - the rounded value
 	 */
-	public void actionOnWhiteTile() {
+	public static double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
+
+	}
+
+	/**
+	 * Ends the game in progress.
+	 */
+	public void endThisGame() {
 		isGameOver = true;
 
 		timer.stop();
@@ -130,7 +181,22 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 		averageOfClickSpeed = GameService.calculateAverageClickTime(timeDifferenceBetweenBlackTilesClickedInSeconds);
 
-		mainApp.showGameOverWindow();
+		if (!Double.isNaN(averageOfClickSpeed))
+			averageOfClickSpeed = round(averageOfClickSpeed, 3);
+
+		gameplayData.setAverageOfClickSpeed(averageOfClickSpeed);
+		gameplayData.setFinalScore(finalScore);
+		if (playerName.equals("")) {
+			playerName = "Anonymous";
+		}
+		gameplayData.setPlayerName(playerName);
+		gameplayData.setDifficulty(difficulty);
+
+		this.setGameplayData(gameplayData);
+
+		GamePlayDataDAO.saveGamePlayData(gameplayData);
+
+		mainApp.showGameOverWindow(gameplayData);
 
 	}
 
@@ -155,8 +221,9 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	 */
 	public void startGame(String difficulty) {
 		generateTiles();
+		this.difficulty = difficulty;
 
-		switch (difficulty) {
+		switch (this.difficulty) {
 		case "easy":
 			difficultyMultiplier = 3;
 			break;
@@ -207,10 +274,24 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	}
 
 	/**
-	 * @return mainApp
+	 * @return mainApp - reference to {@link bm.game.tile.view.Main}
 	 */
 	public Main getMainApp() {
 		return this.mainApp;
+	}
+
+	/**
+	 * 
+	 * @param playerName
+	 *            - name of the player
+	 */
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+
+	}
+
+	public String getPlayerName() {
+		return this.playerName;
 	}
 
 }

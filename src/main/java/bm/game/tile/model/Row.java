@@ -26,39 +26,63 @@ public class Row {
 	}
 	
 	
-
+	/**
+	 * 
+	 * @return - whether the row was clicked in this lifecycle, or not
+	 */
 	public boolean wasItClicked() {
 		return wasItClicked;
 	}
 
 
-
+	/**
+	 * 
+	 * @param wasItClicked - whether the row was clicked in this lifecycle, or not
+	 */
 	public void setClicked(boolean wasItClicked) {
 		this.wasItClicked = wasItClicked;
 	}
 
 
-
+	/**
+	 * 
+	 * @return - the Y coordinate of this row
+	 */
 	public int getY() {
 		return y;
 	}
-
+	/**
+	 * 
+	 * @param y - the Y coordinate of this row
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
-
+	/**
+	 * 
+	 * @return - the height of this row
+	 */
 	public int getRowHeight() {
 		return rowHeight;
 	}
-
+	/**
+	 * 
+	 * @param rowHeight - the height of this row
+	 */
 	public void setRowHeight(int rowHeight) {
 		this.rowHeight = rowHeight;
 	}
-
+	/**
+	 * 
+	 * @return - the list of this row's tiles
+	 */
 	public List<Tile> getTiles() {
 		return tilesOfRow;
 	}
-
+	/**
+	 * 
+	 * @return - the index of the black tile in this row, starts from 0
+	 */
 	public int getBlackTileIndex() {
 		return blackTileIndex;
 	}

@@ -4,17 +4,20 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import bm.game.tile.controller.AchievementViewController;
 import bm.game.tile.controller.DifficultyViewController;
 import bm.game.tile.controller.GameController;
 import bm.game.tile.controller.GameOverViewController;
 import bm.game.tile.controller.MenuViewController;
-import bm.game.tile.model.GamePlayData;
 import bm.game.tile.model.GameWindow;
+import bm.game.tile.model.GameplayData;
 import bm.game.tile.model.Row;
 import bm.game.tile.model.Tile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -26,19 +29,40 @@ public class Main extends Application {
 	private GameController game;
 	private int tileWidth = 150;
 	private List<Row> rows;
+	private GameplayData lastGameplayData = new GameplayData("Anonymous");
 
+	/**
+	 * 
+	 * @return - the game controller of the game
+	 */
 	public GameController getGame() {
 		return game;
 	}
+	
+	public GameplayData getGameplayData(){
+		return this.lastGameplayData;
+	}
 
+	/**
+	 * 
+	 * @param primaryStage
+	 *            - the primary stage
+	 */
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}
 
+	/**
+	 * 
+	 * @return - the list of the game's rows
+	 */
 	public List<Row> getRows() {
 		return rows;
 	}
 
+	/**
+	 * JavaFX start method.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
@@ -97,9 +121,11 @@ public class Main extends Application {
 	/**
 	 * Shows the game over window.
 	 */
-	public void showGameOverWindow() {
+	public void showGameOverWindow(GameplayData lastGameplayData) {
 		try {
 
+			this.lastGameplayData = lastGameplayData;
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(this.getClass().getClassLoader().getResource("fxml/TileGameOverLayout.fxml"));
 			Pane gameOverLayout = (Pane) loader.load();
@@ -111,12 +137,12 @@ public class Main extends Application {
 			Stage stage = new Stage();
 			Scene scene = new Scene(gameOverLayout);
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setOnCloseRequest( event -> controller.closeButtonFunction());
+			stage.setOnCloseRequest(event -> controller.closeButtonFunction());
 			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.show();
 
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -125,7 +151,28 @@ public class Main extends Application {
 	 * Shows the achievement menu window.
 	 */
 	public void showAchievementMenu() {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getClassLoader().getResource("fxml/TileAchievementLayout.fxml"));
+			ScrollPane achievementLayout = (ScrollPane) loader.load();
+			
+			AchievementViewController controller = loader.getController();
+			controller.setGameController(game);
+			controller.setAchievements();
 
+			achievementLayout.setVbarPolicy(ScrollBarPolicy.NEVER);
+			achievementLayout.setHbarPolicy(ScrollBarPolicy.NEVER);
+			Scene scene = new Scene(achievementLayout);
+			
+
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -141,7 +188,8 @@ public class Main extends Application {
 			}
 		});
 
-		GamePlayData gamePlayData = new GamePlayData();
+		GameplayData gameplayData = new GameplayData();
+		game.setGameplayData(gameplayData);
 
 		List<Tile> tilesOfRow1 = Arrays.asList(new Tile(0, tileWidth), new Tile(150, tileWidth),
 				new Tile(300, tileWidth), new Tile(450, tileWidth));

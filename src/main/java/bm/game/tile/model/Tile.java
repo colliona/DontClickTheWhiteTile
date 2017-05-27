@@ -17,27 +17,43 @@ public class Tile {
 		this.x = x;
 		this.tileWidth = tileWidth;
 	}
-
+	/**
+	 * 
+	 * @return - the X coordinate of this tile
+	 */
 	public int getX() {
 		return x;
 	}
-
+	/**
+	 * 
+	 * @param x - the X coordinate of this tile
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
-
+	/**
+	 * Sets the color of this tile to be black.
+	 */
 	public void setBlack() {
 		isBlack = true;
 	}
-
+	/**
+	 * Sets the color of this tile to be white.
+	 */
 	public void setWhite() {
 		isBlack = false;
 	}
-
+	/**
+	 * 
+	 * @return - whether the color of this tile is black, or not
+	 */
 	public boolean isBlack() {
 		return isBlack;
 	}
-
+	/**
+	 * 
+	 * @return - the width of this tile
+	 */
 	public int getTileWidth() {
 		return tileWidth;
 	}

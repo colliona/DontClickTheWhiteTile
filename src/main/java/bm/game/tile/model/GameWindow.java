@@ -3,8 +3,6 @@ package bm.game.tile.model;
 import java.util.List;
 import java.util.Random;
 
-import bm.game.tile.controller.GameController;
-
 public class GameWindow {
 	private List<Row> rows;
 	private Random random = new Random();
@@ -19,11 +17,17 @@ public class GameWindow {
 	public GameWindow(List<Row> rows) {
 		this.rows = rows;
 	}
-
+	/**
+	 * 
+	 * @return - the rows of the game 
+	 */
 	public List<Row> getRows() {
 		return rows;
 	}
-
+	/**
+	 * 
+	 * @param difficultyMultiplier - the value of Y offset for rows
+	 */
 	public void nextFrame(int difficultyMultiplier) {
 		for (Row row : rows) {
 			if (row.getY() >= 600) {
@@ -40,7 +44,7 @@ public class GameWindow {
 					row.setBlackTile(random.nextInt(row.getTiles().size()));
 				} else {
 					
-					delegate.actionOnWhiteTile();
+					delegate.endThisGame();
 				}
 			} else {
 				row.setY(row.getY() + difficultyMultiplier);
@@ -48,7 +52,11 @@ public class GameWindow {
 
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param gameWindowDelegate - the game window delegate of the game 
+	 */
 	public void setDelegate(GameWindowDelegate gameWindowDelegate) {
 		delegate = gameWindowDelegate;
 		
