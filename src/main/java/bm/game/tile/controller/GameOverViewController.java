@@ -8,6 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Controls the game over window's functionality.
+ * 
+ * @author collion
+ *
+ */
 public class GameOverViewController extends ViewController {
 	@FXML
 	private Button closeButton;
@@ -44,7 +50,11 @@ public class GameOverViewController extends ViewController {
 		} else {
 			finalAverage.setText("Unlucky.");
 		}
-		
-		highScoreOfPlayer.setText("Your high score is : " + GameplayDataService.playersHighestScoringGame(GameplayDataService.getGamePlayDataForPlayer(game.getPlayerName())).getFinalScore());
+
+		GameplayDataService gameplayDataService = new GameplayDataService();
+
+		highScoreOfPlayer.setText("Your high score is : " + gameplayDataService
+				.highestScoringGame(gameplayDataService.getGamePlayDataForPlayer(game.getPlayerName()))
+				.getFinalScore());
 	}
 }

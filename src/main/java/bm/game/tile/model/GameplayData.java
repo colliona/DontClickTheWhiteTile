@@ -2,6 +2,7 @@ package bm.game.tile.model;
 
 /**
  * Stores the data of a game.
+ * 
  * @author collion
  *
  */
@@ -13,18 +14,27 @@ public class GameplayData {
 	private String difficulty;
 	private int finalScore;
 	private double averageOfClickSpeed;
-	
-	public GameplayData(){
-		
+
+	/**
+	 * Class constructor.
+	 */
+	public GameplayData() {
+
 	}
 
-	public GameplayData(String playerName){
+	/**
+	 * Class constructor.
+	 * 
+	 * @param playerName
+	 *            - the name of the player
+	 */
+	public GameplayData(String playerName) {
 		this.playerName = playerName;
 	}
-	
+
 	/**
 	 * 
-	 * @return name of player
+	 * @return - the name of the player
 	 */
 	public String getPlayerName() {
 		return playerName;
@@ -33,7 +43,7 @@ public class GameplayData {
 	/**
 	 * 
 	 * @param playerName
-	 *            - name of player
+	 *            - the name of the player
 	 */
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
@@ -75,16 +85,18 @@ public class GameplayData {
 
 	/**
 	 * 
-	 * @return - the average of time elapsed time between clicking two black
-	 *         tiles, in seconds
+	 * @return - the average of elapsed time between clicking two black tiles,
+	 *         in seconds
 	 */
 	public double getAverageOfClickSpeed() {
 		return averageOfClickSpeed;
 	}
+
 	/**
 	 * 
-	 * @param averageOfClickSpeed - the average of time elapsed time between clicking two black
-	 *         tiles, in seconds
+	 * @param averageOfClickSpeed
+	 *            - the average of elapsed time between clicking two black
+	 *            tiles, in seconds
 	 */
 	public void setAverageOfClickSpeed(double averageOfClickSpeed) {
 		this.averageOfClickSpeed = averageOfClickSpeed;

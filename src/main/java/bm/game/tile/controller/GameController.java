@@ -28,6 +28,9 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	private Main mainApp;
 	private GameView gameView;
 	private GameWindow gameWindow;
+	/**
+	 * Animates the view.
+	 */
 	public static AnimationTimer timer;
 	private boolean isGameOver = false;
 	private int difficultyMultiplier;
@@ -39,6 +42,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	private Date previousClickTime = null;
 	private GameplayData gameplayData;
 	private String difficulty;
+	private GamePlayDataDAO gameplayDataDAO;
 
 	/**
 	 * Class constructor.
@@ -54,10 +58,26 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 		this.gameWindow = gameWindow;
 	}
 
+	/**
+	 * 
+	 * @return - data access object of game controller
+	 */
+	public GamePlayDataDAO getGameplayDataDAO() {
+		return gameplayDataDAO;
+	}
 
 	/**
 	 * 
-	 * @return the final score of the player
+	 * @param gameplayDataDAO
+	 *            - data access object of game controller
+	 */
+	public void setGameplayDataDAO(GamePlayDataDAO gameplayDataDAO) {
+		this.gameplayDataDAO = gameplayDataDAO;
+	}
+
+	/**
+	 * 
+	 * @return - the final score of the player
 	 */
 	public int getFinalScore() {
 		return this.finalScore;
@@ -65,7 +85,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 	/**
 	 * 
-	 * @return the average of time elapsed time between clicking two black
+	 * @return - the average of time elapsed time between clicking two black
 	 *         tiles, in seconds
 	 * 
 	 */
@@ -194,7 +214,8 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 		this.setGameplayData(gameplayData);
 
-		GamePlayDataDAO.saveGamePlayData(gameplayData);
+		gameplayDataDAO = new GamePlayDataDAO();
+		gameplayDataDAO.saveGamePlayData(gameplayData);
 
 		mainApp.showGameOverWindow(gameplayData);
 
@@ -290,6 +311,10 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 	}
 
+	/**
+	 * 
+	 * @return - name of the player
+	 */
 	public String getPlayerName() {
 		return this.playerName;
 	}

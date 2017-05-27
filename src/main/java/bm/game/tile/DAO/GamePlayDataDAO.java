@@ -17,12 +17,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bm.game.tile.model.GameplayData;
 
-public class GamePlayDataDAO {
+/**
+ * Provides access to persistent storage.
+ * @author collion
+ *
+ */
+public class GamePlayDataDAO implements IGameplayDataDAO{
+	
 	private static File json = new File(
 			"/home/collion/eclipseworkspace/dont-click-the-white-tile/src/main/resources/json/json");
-	private static JSONArray jArray;
+	
+	private JSONArray jArray;
 
-	public static Collection<GameplayData> getAllGamePlayData() {
+	/**
+	 * 
+	 * @return - collection of all the previously stored gameplay data
+	 */
+	@Override
+	public Collection<GameplayData> getAllGamePlayData() {
 
 		List<GameplayData> returnable = new ArrayList<GameplayData>();
 		JSONParser parser = new JSONParser();
@@ -74,9 +86,13 @@ public class GamePlayDataDAO {
 		return returnable;
 	}
 
-
+	/**
+	 * 
+	 * @param gameplayData - the gameplay data to be stored
+	 */
 	@SuppressWarnings("unchecked")
-	public static void saveGamePlayData(GameplayData gameplayData) {
+	@Override
+	public void saveGamePlayData(GameplayData gameplayData) {
 		ObjectMapper mapper = new ObjectMapper();
 		JSONParser parser = new JSONParser();
 
