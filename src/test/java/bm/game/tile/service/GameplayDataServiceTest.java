@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import bm.game.tile.DAO.IGameplayDataDAO;
 import bm.game.tile.model.GameplayData;
+
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -51,6 +53,25 @@ public class GameplayDataServiceTest {
 
 		assertThat(gameplayDataCollection, hasSize(2));
 
+	}
+	
+	
+	@Test
+	public void testHighestScoringGame_should_return_gameplayDataObject_for_highest_scoring_game() {
+		ArrayList<GameplayData> gameplayDataArray = new ArrayList<GameplayData>();
+		GameplayData gameplayData1 = new GameplayData();
+		GameplayData gameplayData2 = new GameplayData();
+		GameplayData gameplayData3 = new GameplayData();
+		gameplayData1.setFinalScore(1);
+		gameplayData2.setFinalScore(2);
+		gameplayData3.setFinalScore(3);
+		gameplayDataArray.add(gameplayData1);
+		gameplayDataArray.add(gameplayData2);
+		gameplayDataArray.add(gameplayData3);
+
+		GameplayData gameplayDataToReturn = gameplayDataService.highestScoringGame(gameplayDataArray);
+		
+		assertEquals(gameplayData3, gameplayDataToReturn);
 	}
 	
 	

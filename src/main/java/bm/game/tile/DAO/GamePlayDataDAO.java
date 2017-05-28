@@ -12,6 +12,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,6 +25,10 @@ import bm.game.tile.model.GameplayData;
  *
  */
 public class GamePlayDataDAO implements IGameplayDataDAO{
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LoggerFactory.getLogger("GamePlayDataDAO.class");
 	/**
 	 * File of the data storage.
 	 */
@@ -109,14 +115,14 @@ public class GamePlayDataDAO implements IGameplayDataDAO{
 			mapper.writer().withDefaultPrettyPrinter().writeValue(json, jArray);
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Parse Exception happened when trying to read from json file.");
+//			e.printStackTrace();
 		}
 	}
 }

@@ -1,5 +1,8 @@
 package bm.game.tile.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,6 +13,10 @@ import javafx.scene.control.TextField;
  *
  */
 public class MenuViewController extends ViewController {
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LoggerFactory.getLogger("MenuViewController.class");
 	/**
 	 * Player name text field.
 	 */
@@ -31,7 +38,6 @@ public class MenuViewController extends ViewController {
 	 */
 	@FXML
 	public void showAchievementMenu() {
-		
 		game.getMainApp().showAchievementMenu();
 	}
 
@@ -40,6 +46,7 @@ public class MenuViewController extends ViewController {
 	 */
 	@FXML
 	public void exit() {
+		logger.info("Game exit.");
 		Platform.exit();
 	}
 }

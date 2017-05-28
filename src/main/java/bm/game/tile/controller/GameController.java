@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import bm.game.tile.DAO.GamePlayDataDAO;
 import bm.game.tile.model.GameplayData;
 import bm.game.tile.model.GameWindow;
@@ -26,6 +29,10 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class GameController implements GameViewDelegate, GameWindowDelegate {
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LoggerFactory.getLogger("GameController.class");
 	/**
 	 * Main application.
 	 */
@@ -210,6 +217,8 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 			this.previousClickTime = now;
 		}
+		
+		logger.info("Black tile clicked, score added.");
 
 	}
 
@@ -260,6 +269,8 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 		gameplayDataDAO = new GamePlayDataDAO();
 		gameplayDataDAO.saveGamePlayData(gameplayData);
 
+		logger.info("Game is ended.");
+		
 		mainApp.showGameOverWindow(gameplayData);
 
 	}
@@ -275,6 +286,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 			row.setBlackTile(blackIndex);
 		}
+		logger.info("Tiles generated.");
 	}
 
 	/**
@@ -284,6 +296,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	 *            - the difficulty of the game
 	 */
 	public void startGame(String difficulty) {
+		
 		generateTiles();
 		this.difficulty = difficulty;
 
@@ -310,6 +323,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 		};
 
 		timer.start();
+		logger.info("Game started.");
 
 	}
 

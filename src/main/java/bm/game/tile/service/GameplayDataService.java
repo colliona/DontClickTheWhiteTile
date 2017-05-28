@@ -3,6 +3,9 @@ package bm.game.tile.service;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import bm.game.tile.DAO.GamePlayDataDAO;
 import bm.game.tile.DAO.IGameplayDataDAO;
 import bm.game.tile.model.GameplayData;
@@ -13,6 +16,10 @@ import bm.game.tile.model.GameplayData;
  *
  */
 public class GameplayDataService {
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LoggerFactory.getLogger("GameplayDataService.class");
 	/**
 	 * Data access object for the class.
 	 */
@@ -36,9 +43,11 @@ public class GameplayDataService {
 	 */
 	public Collection<GameplayData> getGamePlayDataForPlayer(String playerNameToGet) {
 
+		logger.info("Player data loaded.");
 		return gameplayDataDAO.getAllGamePlayData().stream()
 				.filter(gameplayDataObject -> gameplayDataObject.getPlayerName().equals(playerNameToGet))
 				.collect(Collectors.toList());
+		
 	}
 
 	/**
@@ -49,6 +58,7 @@ public class GameplayDataService {
 	 * @return - gameplay data of highest score's game
 	 */
 	public GameplayData highestScoringGame(Collection<GameplayData> listOfGames) {
+		logger.info("Highest scoring game of player is loaded.");
 		return listOfGames.stream().max((gameData1, gameData2) -> gameData1.getFinalScore() - gameData2.getFinalScore())
 				.get();
 	}
@@ -62,7 +72,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Unlucky' achievement
 	 */
 	public boolean isUnlucky(Collection<GameplayData> listOfGames) {
-
+		logger.info("Achievement Unlucky is checked.");
 		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).min().getAsInt() <= 1;
 	}
 
@@ -75,7 +85,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Hundred Percent' achievement
 	 */
 	public boolean isOneHundredApproved(Collection<GameplayData> listOfGames) {
-
+		logger.info("Achievement One Hundred is checked.");
 		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).max().getAsInt() >= 100;
 	}
 
@@ -88,7 +98,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Are you iNsANe ?' achievement
 	 */
 	public boolean isInsane(Collection<GameplayData> listOfGames) {
-
+		logger.info("Achievement Are You Insane is checked.");
 		return listOfGames.stream().filter(gameplayData -> gameplayData.getDifficulty().equals("insane"))
 				.anyMatch(gameplayData -> gameplayData.getFinalScore() >= 10);
 
@@ -103,7 +113,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Fast Fingers' achievement
 	 */
 	public boolean hasFastFingers(Collection<GameplayData> listOfGames) {
-
+		logger.info("Achievement Fast Fingers is checked.");
 		return listOfGames.stream().filter(gameplayData -> gameplayData.getFinalScore() >= 10)
 				.mapToDouble(GameplayData::getAverageOfClickSpeed).min().getAsDouble() <= 0.3;
 	}
@@ -117,6 +127,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Rock Solid' achievement
 	 */
 	public boolean isRockSolid(Collection<GameplayData> listOfGames) {
+		logger.info("Achievement Rock Solid is checked.");
 		return listOfGames.stream().filter(gameplayData -> gameplayData.getDifficulty().equals("hard") || gameplayData.getDifficulty().equals("insane"))
 				.anyMatch(gameplayData -> gameplayData.getFinalScore() >= 100);
 	}
@@ -130,6 +141,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Loyal Gamer' achievement
 	 */
 	public boolean isLoyal(Collection<GameplayData> listOfGames) {
+		logger.info("Achievement Loyal Gamer is checked.");
 		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).max().getAsInt() >= 1000;
 
 	}

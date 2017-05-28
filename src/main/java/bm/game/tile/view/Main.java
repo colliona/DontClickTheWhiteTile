@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import bm.game.tile.controller.AchievementViewController;
 import bm.game.tile.controller.DifficultyViewController;
 import bm.game.tile.controller.GameController;
@@ -29,7 +32,10 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
-
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LoggerFactory.getLogger("Main.class");
 	/**
 	 * The primary stage.
 	 */
@@ -91,7 +97,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Don't Click The White Tiles!");
-
+		logger.info("Application started.");
 		showGameMenu();
 
 	}
@@ -115,6 +121,8 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();
 			primaryStage.show();
+			logger.info("Main menu shown.");
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -137,8 +145,10 @@ public class Main extends Application {
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			logger.info("Difficulty menu shown.");
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("Exception while trying to load DifficultyLayout fxml.");
+//			e.printStackTrace();
 		}
 	}
 
@@ -149,7 +159,7 @@ public class Main extends Application {
 	 */
 	public void showGameOverWindow(GameplayData lastGameplayData) {
 		try {
-
+			
 			this.lastGameplayData = lastGameplayData;
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -167,9 +177,11 @@ public class Main extends Application {
 			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.show();
+			logger.info("Game Over window shown.");
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("Exception while trying to load GameOverLayout fxml.");
+//			e.printStackTrace();
 		}
 	}
 
@@ -194,10 +206,12 @@ public class Main extends Application {
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			logger.info("Achievement menu shown.");
+			
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Exception while trying to load AchievementLayout fxml.");
+//			e.printStackTrace();
 		}
 	}
 
@@ -244,6 +258,7 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		game.startGame(difficulty);
+		logger.info("Game window shown.");
 
 	}
 	
