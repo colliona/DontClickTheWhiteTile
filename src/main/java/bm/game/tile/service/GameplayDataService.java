@@ -60,8 +60,10 @@ public class GameplayDataService {
 	 */
 	public GameplayData highestScoringGame(Collection<GameplayData> listOfGames) {
 		logger.info("Highest scoring game of player is loaded.");
+		GameplayData gameplayData = new GameplayData();
+		gameplayData.setFinalScore(0);
 		return listOfGames.stream().max((gameData1, gameData2) -> gameData1.getFinalScore() - gameData2.getFinalScore())
-				.get();
+				.orElse(gameplayData);
 	}
 
 	/**
