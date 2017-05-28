@@ -2,14 +2,21 @@ package bm.game.tile.controller;
 
 import bm.game.tile.service.GameplayDataService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 /**
  * Controls the achievement window.
  * @author collion
  *
  */
 public class AchievementViewController extends ViewController {
+	/**
+	 * Button for getting back to the main menu.
+	 */
+	@FXML
+	private Button backToMainMenuButton;
 	/**
 	 * Label of unlucky achievement.
 	 */
@@ -50,6 +57,8 @@ public class AchievementViewController extends ViewController {
 		
 		GameplayDataService gameplayDataService = new GameplayDataService();
 
+		
+		backToMainMenuButton.setTextFill(Color.WHITE);
 		unlucky.setText("Unlucky  : Get a score of 0 or 1.");
 		hundredPercent.setText("Hundred Percent : Get a score of 100.");
 		areYouInsane.setText("Are you iNsANe ?  : Get a score of at least 10 on Insane difficulty.");
@@ -99,4 +108,13 @@ public class AchievementViewController extends ViewController {
 		}
 	}
 
+	/**
+	 * Gets us back to the main menu.
+	 */
+	@FXML
+	public void backToMainMenuProcedure() {
+		game.getMainApp().showGameMenu();
+
+	}
+	
 }
