@@ -2,10 +2,12 @@ package bm.game.tile.controller;
 
 import java.text.DecimalFormat;
 
+import bm.game.tile.DAO.GamePlayDataDAO;
 import bm.game.tile.service.GameplayDataService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -31,10 +33,22 @@ public class GameOverViewController extends ViewController {
 	@FXML
 	private Label finalAverage;
 	/**
-	 * Label of high score.
+	 * Label of player's high score.
 	 */
 	@FXML
 	private Label highScoreOfPlayer;
+
+	/**
+	 * Label of all time high score.
+	 */
+	@FXML
+	private Label allTimeHighScore;
+
+	/**
+	 * Label for letting the player know that he broke the high score.
+	 */
+	@FXML
+	private Label playerBrokeHighScore;
 
 	/**
 	 * Gets us back to the main menu.
@@ -64,9 +78,18 @@ public class GameOverViewController extends ViewController {
 		}
 
 		GameplayDataService gameplayDataService = new GameplayDataService();
+		GamePlayDataDAO gamePlayDataDAO = new GamePlayDataDAO();
 
 		highScoreOfPlayer.setText("Your high score is : " + gameplayDataService
 				.highestScoringGame(gameplayDataService.getGamePlayDataForPlayer(game.getPlayerName()))
 				.getFinalScore());
+
+		allTimeHighScore.setText("The all time high score is  : "
+				+ gameplayDataService.highestScoringGame(gamePlayDataDAO.getAllGamePlayData()).getFinalScore());
+
+		if (game.getFinalScore() == gameplayDataService.highestScoringGame(gamePlayDataDAO.getAllGamePlayData())
+				.getFinalScore()) {
+			playerBrokeHighScore.setTextFill(Color.RED);
+		}
 	}
 }

@@ -13,7 +13,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="finalAverage" layoutX="14.0" layoutY="168.0" text="Your average of time spent between clicks is : " textFill="WHITE">
+      <Label fx:id="finalAverage" layoutX="14.0" layoutY="136.0" text="Your average of time spent between clicks is : " textFill="WHITE">
          <font>
             <Font size="22.0" />
          </font>
@@ -23,9 +23,19 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="highScoreOfPlayer" layoutX="14.0" layoutY="242.0" text="Your High score : " textFill="WHITE">
+      <Label fx:id="highScoreOfPlayer" layoutX="14.0" layoutY="200.0" text="Your High score : " textFill="WHITE">
          <font>
             <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="allTimeHighScore" layoutX="14.0" layoutY="249.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerBrokeHighScore" textFill="#000000" layoutX="325.0" layoutY="340.0" text="You Broke the HIGH score !" textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font size="18.0" />
          </font>
       </Label>
    </children>

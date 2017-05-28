@@ -56,7 +56,7 @@ public class AchievementViewController extends ViewController {
 	public void setAchievements() {
 		
 		GameplayDataService gameplayDataService = new GameplayDataService();
-
+		game.setPlayerName("Anonymous");
 		
 		backToMainMenuButton.setTextFill(Color.WHITE);
 		unlucky.setText("Unlucky  : Get a score of 0 or 1.");
