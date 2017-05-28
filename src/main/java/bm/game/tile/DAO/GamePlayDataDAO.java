@@ -3,7 +3,13 @@ package bm.game.tile.DAO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +21,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bm.game.tile.model.GameplayData;
@@ -30,10 +37,6 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 	 * Logger.
 	 */
 	private static Logger logger = LoggerFactory.getLogger("GamePlayDataDAO.class");
-	/**
-	 * File of the data storage.
-	 */
-	private static File json = new File(GamePlayDataDAO.class.getClassLoader().getResource("json/json").getPath());
 
 	/**
 	 * The container array of read data.
@@ -46,23 +49,19 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 	 */
 	@Override
 	public Collection<GameplayData> getAllGamePlayData() {
-
-		List<GameplayData> returnable = new ArrayList<GameplayData>();
 		JSONParser parser = new JSONParser();
+		List<GameplayData> returnable = new ArrayList<GameplayData>();
 		JSONArray jArray = new JSONArray();
+
+		InputStream input = GamePlayDataDAO.class.getClassLoader().getResourceAsStream("json/json");
+		Reader reader = new InputStreamReader(input);
+
 		try {
 
-			jArray = (JSONArray) parser.parse(new FileReader(json));
+			jArray = (JSONArray) parser.parse(reader);
 
-		} catch (FileNotFoundException e) {
-			// logger.error(e.toString());
-			e.printStackTrace();
-		} catch (IOException e) {
-			// logger.error(e.toString());
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// logger.error(e.toString());
-			e.printStackTrace();
+		} catch (IOException | ParseException e) {
+			logger.error(e.toString());
 		}
 
 		for (int i = 0; i < jArray.size(); i++) {
@@ -87,7 +86,6 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 
 				returnable.add(gameplayData);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -105,23 +103,24 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 	public void saveGamePlayData(GameplayData gameplayData) {
 		ObjectMapper mapper = new ObjectMapper();
 		JSONParser parser = new JSONParser();
+		FileWriter fileWriter;
+		InputStream input = GamePlayDataDAO.class.getClassLoader().getResourceAsStream("json/json");
+		Reader reader = new InputStreamReader(input);
 
 		try {
-
-			jArray = (JSONArray) parser.parse(new FileReader(json));
-			String jsonInString = mapper.writeValueAsString(gameplayData);
+			jArray = (JSONArray) parser.parse(reader);
+			String jsonInString;
+			jsonInString = mapper.writeValueAsString(gameplayData);
 			jArray.add(jsonInString);
-			mapper.writer().withDefaultPrettyPrinter().writeValue(json, jArray);
 
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		} catch (ParseException e) {
-			logger.error("Parse Exception happened when trying to read from json file.");
-			// e.printStackTrace();
+			URL locationOfJsonFile = GamePlayDataDAO.class.getResource("/json/json");
+			File json = new File(locationOfJsonFile.toURI());
+			fileWriter = new FileWriter(json);
+			fileWriter.write(jArray.toJSONString());
+			fileWriter.close();
+		} catch (URISyntaxException | IOException | ParseException e) {
+			logger.error(e.toString());
 		}
+
 	}
 }
