@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -113,13 +114,17 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 			String jsonInString;
 			jsonInString = mapper.writeValueAsString(gameplayData);
 			jArray.add(jsonInString);
-
-			URL url = GamePlayDataDAO.class.getResource("/json/json");
-			File file = new File(url.toURI());
-			fileWriter = new FileWriter(file);
-			fileWriter.write(jArray.toJSONString());
-			fileWriter.close();
-		} catch (URISyntaxException | IOException | ParseException e) {
+			
+			PrintWriter printWriter = new PrintWriter(new File(GamePlayDataDAO.class.getClassLoader().getResource("json/json").getPath()));
+			printWriter.write(jArray.toJSONString());
+			printWriter.close();
+			
+//			URL url = GamePlayDataDAO.class.getResource("/json/json");
+//			File file = new File(url.toURI());
+//			fileWriter = new FileWriter(file);
+//			fileWriter.write(jArray.toJSONString());
+//			fileWriter.close();
+		} catch (IOException | ParseException e) {
 			logger.error(e.toString());
 		}
 
