@@ -33,7 +33,15 @@ All you need is your mouse, and it's left button.
       - Unit Tests
       - Documentation
       - Logging
-   
+      
+Installation and Usage
+------
+ Clone the source, then :
+ ````    
+ mvn package
+ java -jar target/dont-click-the-white-tile-1.0-beta-jar-with-dependencies.jar
+ ```` 
+
 Licence
 ------
 
