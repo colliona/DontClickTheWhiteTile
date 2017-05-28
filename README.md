@@ -4,16 +4,17 @@ Dont Click The White Tile
 
 Version
 ------
-1.0-beta
+##### 1.0-beta
 In active development.
 
 Description
 ------
 Choose a difficulty, click the black tiles and try to keep going as long as you can ! 
 
-### Controls
-All you need is your mouse, and it's left button.
+Controls
 ------
+All you need is your mouse, and it's left button.
+
 ### Features
 
  - Game :
@@ -23,4 +24,17 @@ All you need is your mouse, and it's left button.
    - Game over screen
    - Achievement system
    - Saving high score for each player separately
+   
+  - Code : 
 
+      - JavaFX
+      - maven project
+      - MVC model
+      - Unit Tests
+      - Documentation
+      - Logging
+   
+Licence
+------
+
+### Apache License, Version 2.0
