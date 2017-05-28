@@ -47,11 +47,12 @@ public class GameplayDataServiceTest {
 		gameplayDataArray.add(gameplayData2);
 		gameplayDataArray.add(gameplayData3);
 
+		
 		when(mockGameplayDataDAO.getAllGamePlayData()).thenReturn(gameplayDataArray);
 
-		Collection<GameplayData> gameplayDataCollection = gameplayDataService.getGamePlayDataForPlayer("Me");
+		Collection<GameplayData> gameplayDataCollection1 = gameplayDataService.getGamePlayDataForPlayer("Me");
 
-		assertThat(gameplayDataCollection, hasSize(2));
+		assertThat(gameplayDataCollection1, hasSize(2));
 
 	}
 	
@@ -146,17 +147,17 @@ public class GameplayDataServiceTest {
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
 		GameplayData gameplayData3 = new GameplayData();
-		gameplayData1.setFinalScore(1);
+		gameplayData1.setFinalScore(15);
 		gameplayData2.setFinalScore(1);
-		gameplayData3.setFinalScore(2);
+		gameplayData3.setFinalScore(5);
 		gameplayData1.setDifficulty("easy");
 		gameplayData2.setDifficulty("medium");
-		gameplayData3.setDifficulty("hard");
+		gameplayData3.setDifficulty("insane");
 		gameplayDataArray.add(gameplayData1);
 		gameplayDataArray.add(gameplayData2);
 		gameplayDataArray.add(gameplayData3);
 		
-		assertFalse(gameplayDataService.isOneHundredApproved(gameplayDataArray));
+		assertFalse(gameplayDataService.isInsane(gameplayDataArray));
 	}
 	
 	@Test
@@ -165,12 +166,15 @@ public class GameplayDataServiceTest {
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
 		GameplayData gameplayData3 = new GameplayData();
+		GameplayData gameplayData4 = new GameplayData();
 		gameplayData1.setFinalScore(16);
-		gameplayData2.setFinalScore(14);
+		gameplayData2.setFinalScore(10);
 		gameplayData3.setFinalScore(2);
-		gameplayData1.setDifficulty("insane");
+		gameplayData4.setFinalScore(2);
+		gameplayData1.setDifficulty("easy");
 		gameplayData2.setDifficulty("insane");
 		gameplayData3.setDifficulty("insane");
+		gameplayData4.setDifficulty("medium");
 		gameplayDataArray.add(gameplayData1);
 		gameplayDataArray.add(gameplayData2);
 		gameplayDataArray.add(gameplayData3);
@@ -180,15 +184,15 @@ public class GameplayDataServiceTest {
 	
 	
 	@Test
-	public void testIsInsane_should_return_false_if_hasFastFingers_achievement_is_not_achieved(){
+	public void testHasFastFingers_should_return_false_if_hasFastFingers_achievement_is_not_achieved(){
 		ArrayList<GameplayData> gameplayDataArray = new ArrayList<GameplayData>();
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
 		GameplayData gameplayData3 = new GameplayData();
-		gameplayData1.setFinalScore(10);
+		gameplayData1.setFinalScore(5);
 		gameplayData2.setFinalScore(10);
 		gameplayData3.setFinalScore(13);
-		gameplayData1.setAverageOfClickSpeed(0.4);
+		gameplayData1.setAverageOfClickSpeed(0.2);
 		gameplayData2.setAverageOfClickSpeed(0.43);
 		gameplayData3.setAverageOfClickSpeed(0.45);
 		gameplayDataArray.add(gameplayData1);
@@ -199,13 +203,13 @@ public class GameplayDataServiceTest {
 	}
 	
 	@Test
-	public void testIsInsane_should_return_true_if_hasFastFingers_achievement_is_achieved(){
+	public void testHasFastFingers_should_return_true_if_hasFastFingers_achievement_is_achieved(){
 		ArrayList<GameplayData> gameplayDataArray = new ArrayList<GameplayData>();
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
 		GameplayData gameplayData3 = new GameplayData();
 		gameplayData1.setFinalScore(10);
-		gameplayData2.setFinalScore(10);
+		gameplayData2.setFinalScore(5);
 		gameplayData3.setFinalScore(13);
 		gameplayData1.setAverageOfClickSpeed(0.4);
 		gameplayData2.setAverageOfClickSpeed(0.23);
@@ -218,26 +222,30 @@ public class GameplayDataServiceTest {
 	}
 	
 	@Test
-	public void testIsInsane_should_return_false_if_isRockSolid_achievement_is_not_achieved(){
+	public void testIsRockSolid_should_return_false_if_isRockSolid_achievement_is_not_achieved(){
 		ArrayList<GameplayData> gameplayDataArray = new ArrayList<GameplayData>();
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
 		GameplayData gameplayData3 = new GameplayData();
+		GameplayData gameplayData4 = new GameplayData();
 		gameplayData1.setFinalScore(100);
-		gameplayData2.setFinalScore(100);
-		gameplayData3.setFinalScore(100);
+		gameplayData2.setFinalScore(99);
+		gameplayData3.setFinalScore(99);
+		gameplayData4.setFinalScore(55);
 		gameplayData1.setDifficulty("medium");
-		gameplayData2.setDifficulty("medium");
-		gameplayData3.setDifficulty("easy");;
+		gameplayData2.setDifficulty("hard");
+		gameplayData3.setDifficulty("insane");
+		gameplayData4.setDifficulty("easy");
 		gameplayDataArray.add(gameplayData1);
 		gameplayDataArray.add(gameplayData2);
 		gameplayDataArray.add(gameplayData3);
+		gameplayDataArray.add(gameplayData4);
 		
 		assertFalse(gameplayDataService.isRockSolid(gameplayDataArray));
 	}
 	
 	@Test
-	public void testIsInsane_should_return_true_if_isRockSolid_achievement_is_achieved(){
+	public void testIsRockSolid_should_return_true_if_isRockSolid_achievement_is_achieved(){
 		ArrayList<GameplayData> gameplayDataArray = new ArrayList<GameplayData>();
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
@@ -257,7 +265,7 @@ public class GameplayDataServiceTest {
 	
 	
 	@Test
-	public void testIsInsane_should_return_false_if_isLoyal_achievement_is_not_achieved(){
+	public void testIsLoyal_should_return_false_if_isLoyal_achievement_is_not_achieved(){
 		ArrayList<GameplayData> gameplayDataArray = new ArrayList<GameplayData>();
 		GameplayData gameplayData1 = new GameplayData();
 		GameplayData gameplayData2 = new GameplayData();
