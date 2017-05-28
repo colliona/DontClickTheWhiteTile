@@ -21,10 +21,11 @@ import bm.game.tile.model.GameplayData;
 
 /**
  * Provides access to persistent storage.
+ * 
  * @author collion
  *
  */
-public class GamePlayDataDAO implements IGameplayDataDAO{
+public class GamePlayDataDAO implements IGameplayDataDAO {
 	/**
 	 * Logger.
 	 */
@@ -32,9 +33,8 @@ public class GamePlayDataDAO implements IGameplayDataDAO{
 	/**
 	 * File of the data storage.
 	 */
-	private static File json = new File(
-			"/home/collion/eclipseworkspace/dont-click-the-white-tile/src/main/resources/json/json");
-	
+	private static File json = new File(GamePlayDataDAO.class.getClassLoader().getResource("json/json").getPath());
+
 	/**
 	 * The container array of read data.
 	 */
@@ -64,8 +64,6 @@ public class GamePlayDataDAO implements IGameplayDataDAO{
 			// logger.error(e.toString());
 			e.printStackTrace();
 		}
-
-
 
 		for (int i = 0; i < jArray.size(); i++) {
 
@@ -99,7 +97,8 @@ public class GamePlayDataDAO implements IGameplayDataDAO{
 
 	/**
 	 * 
-	 * @param gameplayData - the gameplay data to be stored
+	 * @param gameplayData
+	 *            - the gameplay data to be stored
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -122,7 +121,7 @@ public class GamePlayDataDAO implements IGameplayDataDAO{
 			e.printStackTrace();
 		} catch (ParseException e) {
 			logger.error("Parse Exception happened when trying to read from json file.");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 	}
 }
