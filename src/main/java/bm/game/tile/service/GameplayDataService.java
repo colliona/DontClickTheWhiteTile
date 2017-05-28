@@ -12,6 +12,7 @@ import bm.game.tile.model.GameplayData;
 
 /**
  * Class for essential business logic of achievements and other statistics.
+ * 
  * @author collion
  *
  */
@@ -25,7 +26,7 @@ public class GameplayDataService {
 	 */
 	private IGameplayDataDAO gameplayDataDAO = new GamePlayDataDAO();
 
-	/** 
+	/**
 	 * 
 	 * @param gameplayDataDAO
 	 *            - data access object of gameplay data
@@ -47,7 +48,7 @@ public class GameplayDataService {
 		return gameplayDataDAO.getAllGamePlayData().stream()
 				.filter(gameplayDataObject -> gameplayDataObject.getPlayerName().equals(playerNameToGet))
 				.collect(Collectors.toList());
-		
+
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class GameplayDataService {
 	 */
 	public boolean isUnlucky(Collection<GameplayData> listOfGames) {
 		logger.info("Achievement Unlucky is checked.");
-		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).min().getAsInt() <= 1;
+		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).min().orElse(5) <= 1;
 	}
 
 	/**
@@ -86,7 +87,7 @@ public class GameplayDataService {
 	 */
 	public boolean isOneHundredApproved(Collection<GameplayData> listOfGames) {
 		logger.info("Achievement One Hundred is checked.");
-		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).max().getAsInt() >= 100;
+		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).max().orElse(5) >= 100;
 	}
 
 	/**
@@ -115,7 +116,7 @@ public class GameplayDataService {
 	public boolean hasFastFingers(Collection<GameplayData> listOfGames) {
 		logger.info("Achievement Fast Fingers is checked.");
 		return listOfGames.stream().filter(gameplayData -> gameplayData.getFinalScore() >= 10)
-				.mapToDouble(GameplayData::getAverageOfClickSpeed).min().getAsDouble() <= 0.3;
+				.mapToDouble(GameplayData::getAverageOfClickSpeed).min().orElse(1.0) <= 0.3;
 	}
 
 	/**
@@ -128,7 +129,9 @@ public class GameplayDataService {
 	 */
 	public boolean isRockSolid(Collection<GameplayData> listOfGames) {
 		logger.info("Achievement Rock Solid is checked.");
-		return listOfGames.stream().filter(gameplayData -> gameplayData.getDifficulty().equals("hard") || gameplayData.getDifficulty().equals("insane"))
+		return listOfGames.stream()
+				.filter(gameplayData -> gameplayData.getDifficulty().equals("hard")
+						|| gameplayData.getDifficulty().equals("insane"))
 				.anyMatch(gameplayData -> gameplayData.getFinalScore() >= 100);
 	}
 
@@ -142,7 +145,7 @@ public class GameplayDataService {
 	 */
 	public boolean isLoyal(Collection<GameplayData> listOfGames) {
 		logger.info("Achievement Loyal Gamer is checked.");
-		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).max().getAsInt() >= 1000;
+		return listOfGames.stream().mapToInt(GameplayData::getFinalScore).max().orElse(5) >= 1000;
 
 	}
 

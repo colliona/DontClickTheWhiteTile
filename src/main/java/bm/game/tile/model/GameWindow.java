@@ -5,6 +5,7 @@ import java.util.Random;
 
 /**
  * Class for game window.
+ * 
  * @author collion
  *
  */
@@ -31,16 +32,19 @@ public class GameWindow {
 	public GameWindow(List<Row> rows) {
 		this.rows = rows;
 	}
+
 	/**
 	 * 
-	 * @return - the rows of the game 
+	 * @return - the rows of the game
 	 */
 	public List<Row> getRows() {
 		return rows;
 	}
+
 	/**
 	 * 
-	 * @param difficultyMultiplier - the value of Y offset for rows
+	 * @param difficultyMultiplier
+	 *            - the value of Y offset for rows
 	 */
 	public void nextFrame(int difficultyMultiplier) {
 		for (Row row : rows) {
@@ -57,7 +61,7 @@ public class GameWindow {
 					row.setY(-200);
 					row.setBlackTile(random.nextInt(row.getTiles().size()));
 				} else {
-					
+
 					delegate.endThisGame();
 				}
 			} else {
@@ -66,14 +70,15 @@ public class GameWindow {
 
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @param gameWindowDelegate - the game window delegate of the game 
+	 * @param gameWindowDelegate
+	 *            - the game window delegate of the game
 	 */
 	public void setDelegate(GameWindowDelegate gameWindowDelegate) {
 		delegate = gameWindowDelegate;
-		
+
 	}
 
 }

@@ -5,38 +5,51 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bm.game.tile.controller.GameOverViewController">
-   <children>
-      <Button fx:id="closeButton" alignment="CENTER" layoutY="300.0" mnemonicParsing="false" onAction="#closeButtonFunction" prefHeight="100.0" prefWidth="300.0" stylesheets="@../css/TileWhiteGameOverButtonLayout.css" text="Back to Main Menu" textAlignment="CENTER" />
-      <Label fx:id="finalScore" layoutX="14.0" layoutY="93.0" text="Your final score is : " textFill="WHITE">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Label fx:id="finalAverage" layoutX="14.0" layoutY="136.0" text="Your average of time spent between clicks is : " textFill="WHITE">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label layoutX="190.0" layoutY="19.0" text="Game Over!" textFill="RED">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="highScoreOfPlayer" layoutX="14.0" layoutY="200.0" text="Your High score : " textFill="WHITE">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label fx:id="allTimeHighScore" layoutX="14.0" layoutY="249.0" text="Label" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="playerBrokeHighScore" textFill="#000000" layoutX="325.0" layoutY="340.0" text="You Broke the HIGH score !" textAlignment="JUSTIFY" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+	style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.111"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="bm.game.tile.controller.GameOverViewController">
+	<children>
+		<Button fx:id="closeButton" alignment="CENTER" layoutY="300.0"
+			mnemonicParsing="false" onAction="#closeButtonFunction" prefHeight="100.0"
+			prefWidth="300.0" stylesheets="@../css/TileWhiteGameOverButtonLayout.css"
+			text="Back to Main Menu" textAlignment="CENTER" />
+		<Label fx:id="finalScore" layoutX="14.0" layoutY="93.0"
+			text="Your final score is : " textFill="WHITE">
+			<font>
+				<Font size="26.0" />
+			</font>
+		</Label>
+		<Label fx:id="finalAverage" layoutX="14.0" layoutY="136.0"
+			text="Your average of time spent between clicks is : " textFill="WHITE">
+			<font>
+				<Font size="22.0" />
+			</font>
+		</Label>
+		<Label layoutX="190.0" layoutY="19.0" text="Game Over!"
+			textFill="RED">
+			<font>
+				<Font size="36.0" />
+			</font>
+		</Label>
+		<Label fx:id="highScoreOfPlayer" layoutX="14.0" layoutY="200.0"
+			text="Your High score : " textFill="WHITE">
+			<font>
+				<Font size="22.0" />
+			</font>
+		</Label>
+		<Label fx:id="allTimeHighScore" layoutX="14.0" layoutY="249.0"
+			text="Label" textFill="WHITE">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</Label>
+		<Label fx:id="playerBrokeHighScore" textFill="#000000" layoutX="325.0"
+			layoutY="340.0" text="You Broke the HIGH score !" textAlignment="JUSTIFY"
+			wrapText="true">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+	</children>
 </Pane>

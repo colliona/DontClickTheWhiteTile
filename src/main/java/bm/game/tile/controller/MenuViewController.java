@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 
 /**
  * Provides functionality for the game menu view.
+ * 
  * @author collion
  *
  */
@@ -22,7 +23,7 @@ public class MenuViewController extends ViewController {
 	 */
 	@FXML
 	private TextField playerName;
-	
+
 	/**
 	 * Shows difficulty menu window.
 	 */
@@ -30,7 +31,7 @@ public class MenuViewController extends ViewController {
 	public void showDifficultyMenu() {
 		game.setPlayerName(playerName.getText());
 		game.getMainApp().showDifficultyMenu();
-		
+
 	}
 
 	/**

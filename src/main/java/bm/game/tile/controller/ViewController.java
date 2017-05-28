@@ -4,6 +4,7 @@ import bm.game.tile.controller.GameController;
 
 /**
  * JavaFX controllers for different windows are derived from this class.
+ * 
  * @author collion
  *
  */

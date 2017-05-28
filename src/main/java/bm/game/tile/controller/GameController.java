@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The main controller class. This holds everything.
+ * 
  * @author collion
  *
  */
@@ -74,7 +75,8 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	 */
 	private double averageOfClickSpeed;
 	/**
-	 * Vector containing time difference between two black tile clicks in seconds.
+	 * Vector containing time difference between two black tile clicks in
+	 * seconds.
 	 */
 	private Vector<Double> timeDifferenceBetweenBlackTilesClickedInSeconds = new Vector<Double>();
 	/**
@@ -217,7 +219,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 			this.previousClickTime = now;
 		}
-		
+
 		logger.info("Black tile clicked, score added.");
 
 	}
@@ -270,7 +272,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 		gameplayDataDAO.saveGamePlayData(gameplayData);
 
 		logger.info("Game is ended.");
-		
+
 		mainApp.showGameOverWindow(gameplayData);
 
 	}
@@ -296,7 +298,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	 *            - the difficulty of the game
 	 */
 	public void startGame(String difficulty) {
-		
+
 		generateTiles();
 		this.difficulty = difficulty;
 

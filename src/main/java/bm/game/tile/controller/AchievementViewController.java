@@ -5,9 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+
 /**
  * Controls the achievement window.
+ * 
  * @author collion
  *
  */
@@ -48,16 +49,15 @@ public class AchievementViewController extends ViewController {
 	@FXML
 	private Label loyalGamer;
 
-
 	/**
 	 * Sets the status of the achievements.
 	 */
 	@FXML
 	public void setAchievements() {
-		
+
 		GameplayDataService gameplayDataService = new GameplayDataService();
 		game.setPlayerName("Anonymous");
-		
+
 		backToMainMenuButton.setTextFill(Color.WHITE);
 		unlucky.setText("Unlucky  : Get a score of 0 or 1.");
 		hundredPercent.setText("Hundred Percent : Get a score of 100.");
@@ -66,7 +66,8 @@ public class AchievementViewController extends ViewController {
 		rockSolid.setText("Rock Solid : Get a score of 100 on Hard difficulty.");
 		loyalGamer.setText("Loyal Gamer: Get a score of 1000.");
 
-		if (gameplayDataService.isUnlucky(gameplayDataService.getGamePlayDataForPlayer(game.getMainApp().getGameplayData().getPlayerName()))) {
+		if (gameplayDataService.isUnlucky(
+				gameplayDataService.getGamePlayDataForPlayer(game.getMainApp().getGameplayData().getPlayerName()))) {
 			unlucky.setTextFill(Color.GREEN);
 		} else {
 			unlucky.setTextFill(Color.RED);
@@ -116,5 +117,5 @@ public class AchievementViewController extends ViewController {
 		game.getMainApp().showGameMenu();
 
 	}
-	
+
 }

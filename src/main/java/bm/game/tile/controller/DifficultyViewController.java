@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 
 /**
  * Provides functionality for the difficulty view.
+ * 
  * @author collion
  *
  */

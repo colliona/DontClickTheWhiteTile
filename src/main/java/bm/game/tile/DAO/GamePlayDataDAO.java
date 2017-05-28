@@ -1,17 +1,11 @@
 package bm.game.tile.DAO;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Reader;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +17,6 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bm.game.tile.model.GameplayData;
@@ -105,7 +98,6 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 	public void saveGamePlayData(GameplayData gameplayData) {
 		ObjectMapper mapper = new ObjectMapper();
 		JSONParser parser = new JSONParser();
-		FileWriter fileWriter;
 		InputStream input = GamePlayDataDAO.class.getClassLoader().getResourceAsStream("json/json");
 		Reader reader = new InputStreamReader(input);
 
@@ -118,12 +110,7 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 			PrintWriter printWriter = new PrintWriter(new File(GamePlayDataDAO.class.getClassLoader().getResource("json/json").getPath()));
 			printWriter.write(jArray.toJSONString());
 			printWriter.close();
-			
-//			URL url = GamePlayDataDAO.class.getResource("/json/json");
-//			File file = new File(url.toURI());
-//			fileWriter = new FileWriter(file);
-//			fileWriter.write(jArray.toJSONString());
-//			fileWriter.close();
+
 		} catch (IOException | ParseException e) {
 			logger.error(e.toString());
 		}
