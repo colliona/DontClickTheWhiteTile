@@ -10,16 +10,34 @@ import javafx.scene.paint.Color;
  *
  */
 public class AchievementViewController extends ViewController {
+	/**
+	 * Label of unlucky achievement.
+	 */
 	@FXML
 	private Label unlucky;
+	/**
+	 * Label of hundredPercent achievement.
+	 */
 	@FXML
 	private Label hundredPercent;
+	/**
+	 * Label of areYouInsane achievement.
+	 */
 	@FXML
 	private Label areYouInsane;
+	/**
+	 * Label of fastFingers achievement.
+	 */
 	@FXML
 	private Label fastFingers;
+	/**
+	 * Label of rockSolid achievement.
+	 */
 	@FXML
 	private Label rockSolid;
+	/**
+	 * Label of loyalGamer achievement.
+	 */
 	@FXML
 	private Label loyalGamer;
 

@@ -4,7 +4,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+/**
+ * Provides functionality for the game menu view.
+ * @author collion
+ *
+ */
 public class MenuViewController extends ViewController {
+	/**
+	 * Player name text field.
+	 */
 	@FXML
 	private TextField playerName;
 	

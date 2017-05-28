@@ -11,8 +11,17 @@ public class GameplayData {
 	 * The name of the current player.
 	 */
 	private String playerName;
+	/**
+	 * Difficulty level.
+	 */
 	private String difficulty;
+	/**
+	 * Final score.
+	 */
 	private int finalScore;
+	/**
+	 * Average of click speed.
+	 */
 	private double averageOfClickSpeed;
 
 	/**

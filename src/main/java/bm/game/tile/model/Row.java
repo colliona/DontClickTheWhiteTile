@@ -2,11 +2,31 @@ package bm.game.tile.model;
 
 import java.util.List;
 
+/**
+ * Class of a row.
+ * @author collion
+ *
+ */
 public class Row {
+	/**
+	 * List of the tiles of the row.
+	 */
 	List<Tile> tilesOfRow;
+	/**
+	 * Y coordinate of the row.
+	 */
 	private int y;
+	/**
+	 * Height of row.
+	 */
 	private int rowHeight;
+	/**
+	 * Infex of the black tile in the row.
+	 */
 	private int blackTileIndex = -1;
+	/**
+	 * True if the row was clicked in that lifecycle, false if not.
+	 */
 	private boolean wasItClicked = false;
 
 	/**
@@ -24,8 +44,7 @@ public class Row {
 		this.tilesOfRow = tilesOfRow;
 		this.rowHeight = rowHeight;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @return - whether the row was clicked in this lifecycle, or not
@@ -34,15 +53,14 @@ public class Row {
 		return wasItClicked;
 	}
 
-
 	/**
 	 * 
-	 * @param wasItClicked - whether the row was clicked in this lifecycle, or not
+	 * @param wasItClicked
+	 *            - whether the row was clicked in this lifecycle, or not
 	 */
 	public void setClicked(boolean wasItClicked) {
 		this.wasItClicked = wasItClicked;
 	}
-
 
 	/**
 	 * 
@@ -51,13 +69,16 @@ public class Row {
 	public int getY() {
 		return y;
 	}
+
 	/**
 	 * 
-	 * @param y - the Y coordinate of this row
+	 * @param y
+	 *            - the Y coordinate of this row
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
+
 	/**
 	 * 
 	 * @return - the height of this row
@@ -65,13 +86,16 @@ public class Row {
 	public int getRowHeight() {
 		return rowHeight;
 	}
+
 	/**
 	 * 
-	 * @param rowHeight - the height of this row
+	 * @param rowHeight
+	 *            - the height of this row
 	 */
 	public void setRowHeight(int rowHeight) {
 		this.rowHeight = rowHeight;
 	}
+
 	/**
 	 * 
 	 * @return - the list of this row's tiles
@@ -79,6 +103,7 @@ public class Row {
 	public List<Tile> getTiles() {
 		return tilesOfRow;
 	}
+
 	/**
 	 * 
 	 * @return - the index of the black tile in this row, starts from 0
@@ -91,7 +116,8 @@ public class Row {
 	 * Sets the black tile of the row.
 	 * 
 	 * @param indexOfBlackTile
-	 *            - the index of the black tile, starts from 0 and goes from left to right.
+	 *            - the index of the black tile, starts from 0 and goes from
+	 *            left to right.
 	 */
 	public void setBlackTile(int indexOfBlackTile) {
 		blackTileIndex = indexOfBlackTile;
@@ -109,7 +135,9 @@ public class Row {
 	 * 
 	 * @param mouseYCoordinate
 	 *            - y coordinate of mouse
+	 * @return - true if row contains the point, false otherwise
 	 */
+
 	public boolean containsPoint(double mouseYCoordinate) {
 		return y <= mouseYCoordinate && y + rowHeight > mouseYCoordinate;
 	}

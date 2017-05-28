@@ -4,9 +4,13 @@ import bm.game.tile.controller.GameController;
 
 /**
  * JavaFX controllers for different windows are derived from this class.
+ * @author collion
+ *
  */
-
 public abstract class ViewController {
+	/**
+	 * Controller of the game.
+	 */
 	protected GameController game;
 
 	/**

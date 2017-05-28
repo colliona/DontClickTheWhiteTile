@@ -9,18 +9,30 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Controls the game over window's functionality.
+ * Provides functionality for the game over view.
  * 
  * @author collion
  *
  */
 public class GameOverViewController extends ViewController {
+	/**
+	 * Close button.
+	 */
 	@FXML
 	private Button closeButton;
+	/**
+	 * Label of final score.
+	 */
 	@FXML
 	private Label finalScore;
+	/**
+	 * Label of final average.
+	 */
 	@FXML
 	private Label finalAverage;
+	/**
+	 * Label of high score.
+	 */
 	@FXML
 	private Label highScoreOfPlayer;
 

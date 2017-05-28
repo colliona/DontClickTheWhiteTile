@@ -3,9 +3,23 @@ package bm.game.tile.model;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class for game window.
+ * @author collion
+ *
+ */
 public class GameWindow {
+	/**
+	 * List of rows of the game.
+	 */
 	private List<Row> rows;
+	/**
+	 * Random number.
+	 */
 	private Random random = new Random();
+	/**
+	 * Delegate for the game controller of the game.
+	 */
 	private GameWindowDelegate delegate;
 
 	/**

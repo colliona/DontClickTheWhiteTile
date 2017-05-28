@@ -2,6 +2,11 @@ package bm.game.tile.service;
 
 import java.util.Vector;
 
+/**
+ * Class for business logic.
+ * @author collion
+ *
+ */
 public class GameService {
 	/**
 	 * Calculates the average of seconds elapsed between consecutive clicks on

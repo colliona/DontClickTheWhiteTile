@@ -23,12 +23,32 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Class of the main application.
+ * @author collion
+ *
+ */
 public class Main extends Application {
 
+	/**
+	 * The primary stage.
+	 */
 	private Stage primaryStage;
+	/**
+	 * Game controller.
+	 */
 	private GameController game;
+	/**
+	 * Width of a tile.
+	 */
 	private int tileWidth = 150;
+	/**
+	 * List of the game's rows.
+	 */
 	private List<Row> rows;
+	/**
+	 * Gameplay data of the last played game.
+	 */
 	private GameplayData lastGameplayData = new GameplayData("Anonymous");
 
 	/**
@@ -39,6 +59,10 @@ public class Main extends Application {
 		return game;
 	}
 	
+	/**
+	 * 
+	 * @return - last gameplay data
+	 */
 	public GameplayData getGameplayData(){
 		return this.lastGameplayData;
 	}
@@ -120,6 +144,8 @@ public class Main extends Application {
 
 	/**
 	 * Shows the game over window.
+	 * 
+	 * @param lastGameplayData - the gameplay data of last game
 	 */
 	public void showGameOverWindow(GameplayData lastGameplayData) {
 		try {
@@ -177,6 +203,8 @@ public class Main extends Application {
 
 	/**
 	 * Shows the game window.
+	 * 
+	 * @param difficulty - difficulty of the next game
 	 */
 	public void showGame(String difficulty) {
 
@@ -218,7 +246,11 @@ public class Main extends Application {
 		game.startGame(difficulty);
 
 	}
-
+	
+	/**
+	 * Main method.
+	 * @param args - argumentums
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

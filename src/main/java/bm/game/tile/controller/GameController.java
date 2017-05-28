@@ -22,26 +22,69 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The main controller class. This holds everything.
+ * @author collion
+ *
  */
-
 public class GameController implements GameViewDelegate, GameWindowDelegate {
+	/**
+	 * Main application.
+	 */
 	private Main mainApp;
+	/**
+	 * Game view.
+	 */
 	private GameView gameView;
+	/**
+	 * Game window.
+	 */
 	private GameWindow gameWindow;
 	/**
 	 * Animates the view.
 	 */
 	public static AnimationTimer timer;
+	/**
+	 * True if game is over, false if not.
+	 */
 	private boolean isGameOver = false;
+	/**
+	 * Decides the measurement level of difficulty.
+	 */
 	private int difficultyMultiplier;
+	/**
+	 * Current score of player.
+	 */
 	private int score = 0;
+	/**
+	 * Final score of player.
+	 */
 	private int finalScore;
+	/**
+	 * Name of player.
+	 */
 	private String playerName;
+	/**
+	 * Player's average of click speed.
+	 */
 	private double averageOfClickSpeed;
+	/**
+	 * Vector containing time difference between two black tile clicks in seconds.
+	 */
 	private Vector<Double> timeDifferenceBetweenBlackTilesClickedInSeconds = new Vector<Double>();
+	/**
+	 * Date of click of last black tile.
+	 */
 	private Date previousClickTime = null;
+	/**
+	 * Gameplay data object.
+	 */
 	private GameplayData gameplayData;
+	/**
+	 * Decides the level of difficulty.
+	 */
 	private String difficulty;
+	/**
+	 * Data access object for gameplay data.
+	 */
 	private GamePlayDataDAO gameplayDataDAO;
 
 	/**

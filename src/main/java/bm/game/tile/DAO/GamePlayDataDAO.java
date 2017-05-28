@@ -23,10 +23,15 @@ import bm.game.tile.model.GameplayData;
  *
  */
 public class GamePlayDataDAO implements IGameplayDataDAO{
-	
+	/**
+	 * File of the data storage.
+	 */
 	private static File json = new File(
 			"/home/collion/eclipseworkspace/dont-click-the-white-tile/src/main/resources/json/json");
 	
+	/**
+	 * The container array of read data.
+	 */
 	private JSONArray jArray;
 
 	/**

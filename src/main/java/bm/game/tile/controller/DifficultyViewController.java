@@ -2,6 +2,11 @@ package bm.game.tile.controller;
 
 import javafx.fxml.FXML;
 
+/**
+ * Provides functionality for the difficulty view.
+ * @author collion
+ *
+ */
 public class DifficultyViewController extends ViewController {
 	/**
 	 * Sets game difficulty to easy.

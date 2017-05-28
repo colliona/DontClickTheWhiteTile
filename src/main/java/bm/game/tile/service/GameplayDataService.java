@@ -7,7 +7,15 @@ import bm.game.tile.DAO.GamePlayDataDAO;
 import bm.game.tile.DAO.IGameplayDataDAO;
 import bm.game.tile.model.GameplayData;
 
+/**
+ * Class for essential business logic of achievements and other statistics.
+ * @author collion
+ *
+ */
 public class GameplayDataService {
+	/**
+	 * Data access object for the class.
+	 */
 	private IGameplayDataDAO gameplayDataDAO = new GamePlayDataDAO();
 
 	/** 
@@ -109,7 +117,7 @@ public class GameplayDataService {
 	 *         unlocking the 'Rock Solid' achievement
 	 */
 	public boolean isRockSolid(Collection<GameplayData> listOfGames) {
-		return listOfGames.stream().filter(gameplayData -> gameplayData.getDifficulty().equals("hard"))
+		return listOfGames.stream().filter(gameplayData -> gameplayData.getDifficulty().equals("hard") || gameplayData.getDifficulty().equals("insane"))
 				.anyMatch(gameplayData -> gameplayData.getFinalScore() >= 100);
 	}
 

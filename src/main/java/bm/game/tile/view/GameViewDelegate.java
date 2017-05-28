@@ -3,12 +3,17 @@ package bm.game.tile.view;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Interface of the game controller's delegate for the game view.
+ * 
+ * @author collion
+ *
+ */
 public interface GameViewDelegate {
-
-//	public EventHandler<? super MouseEvent> getBlackClickHandler(Rectangle rectangle);
-//
-//	public EventHandler<? super MouseEvent> getWhiteClickHandler();
-
+	/**
+	 * Handles the functionality of the click in a game.
+	 * @return - the event which occurs 
+	 */
 	public EventHandler<? super MouseEvent> getClickHandler();
-	
+
 }

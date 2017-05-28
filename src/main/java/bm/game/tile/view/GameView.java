@@ -10,11 +10,25 @@ import bm.game.tile.model.GameWindow;
 import bm.game.tile.model.Row;
 import bm.game.tile.model.Tile;
 
+/**
+ * Class of the game view.
+ * @author collion
+ *
+ */
 public class GameView extends Group {
 
-	GameViewDelegate delegate;
-	Canvas canvas;
-	GraphicsContext graphicsContext;
+	/**
+	 * Delegate of the game controller.
+	 */
+	private GameViewDelegate delegate;
+	/**
+	 * Canvas to draw on.
+	 */
+	private Canvas canvas;
+	/**
+	 * Graphic context.
+	 */
+	private GraphicsContext graphicsContext;
 
 	/**
 	 * Class constructor.

@@ -1,8 +1,22 @@
 package bm.game.tile.model;
 
+/**
+ * Class for the tiles of the game.
+ * @author collion
+ *
+ */
 public class Tile {
+	/**
+	 * X coordinate of the tile.
+	 */
 	private int x;
+	/**
+	 * True if the tile is black, false if white.
+	 */
 	private boolean isBlack = false;
+	/**
+	 * The width of the tile.
+	 */
 	private int tileWidth;
 
 	/**
@@ -62,9 +76,10 @@ public class Tile {
 	 * Returns true if the tile contains the given coordinate, false if not.
 	 * 
 	 * @param mouseXCoordinate
-	 *            - x coordinate of mouse
+	 *            - X coordinate of mouse
+	 * @return - true if contains the point, false otherwise
 	 */
-	public boolean containsPoint(double mouseYCoordinate) {
-		return x <= mouseYCoordinate && x + tileWidth > mouseYCoordinate;
+	public boolean containsPoint(double mouseXCoordinate) {
+		return x <= mouseXCoordinate && x + tileWidth > mouseXCoordinate;
 	}
 }
