@@ -1,7 +1,7 @@
 /**
  * Model classes of mvc design pattern.
- */
-/**
+ *
+ *
  * @author collion
  *
  */
