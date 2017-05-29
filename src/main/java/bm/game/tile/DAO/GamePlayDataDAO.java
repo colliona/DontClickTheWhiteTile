@@ -52,14 +52,14 @@ public class GamePlayDataDAO implements IGameplayDataDAO {
 		Reader reader = new InputStreamReader(input);
 
 		try {
-
+			
 			jArray = (JSONArray) parser.parse(reader);
 
 		} catch (IOException | ParseException e) {
 			logger.error(e.toString());
 		}
 
-		for (int i = 0; i < jArray.size(); i++) {
+		for(int i = 0; i < jArray.size(); i++) {
 
 			JSONObject jsonObject;
 			try {
