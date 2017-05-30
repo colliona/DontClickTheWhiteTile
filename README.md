@@ -40,6 +40,11 @@ Installation and Usage
  ````    
  mvn package
  java -jar target/dont-click-the-white-tile-1.0-beta-jar-with-dependencies.jar
+ ````
+ or
+ ````    
+ mvn package
+ mvn exec:java
  ```` 
 
 Licence
