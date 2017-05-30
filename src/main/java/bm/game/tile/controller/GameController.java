@@ -57,7 +57,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 	/**
 	 * Decides the measurement level of difficulty.
 	 */
-	private int difficultyMultiplier;
+	private double difficultyMultiplier;
 	/**
 	 * Current score of player.
 	 */
@@ -304,7 +304,7 @@ public class GameController implements GameViewDelegate, GameWindowDelegate {
 
 		switch (this.difficulty) {
 		case "easy":
-			difficultyMultiplier = 3;
+			difficultyMultiplier = 0.3;
 			break;
 		case "medium":
 			difficultyMultiplier = 6;

@@ -15,7 +15,7 @@ public class Row {
 	/**
 	 * Y coordinate of the row.
 	 */
-	private int y;
+	private double y;
 	/**
 	 * Height of row.
 	 */
@@ -66,7 +66,7 @@ public class Row {
 	 * 
 	 * @return - the Y coordinate of this row
 	 */
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
@@ -75,7 +75,7 @@ public class Row {
 	 * @param y
 	 *            - the Y coordinate of this row
 	 */
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 

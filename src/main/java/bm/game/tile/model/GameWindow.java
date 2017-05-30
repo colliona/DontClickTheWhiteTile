@@ -46,7 +46,7 @@ public class GameWindow {
 	 * @param difficultyMultiplier
 	 *            - the value of Y offset for rows
 	 */
-	public void nextFrame(int difficultyMultiplier) {
+	public void nextFrame(double difficultyMultiplier) {
 		for (Row row : rows) {
 			if (row.getY() >= 600) {
 				boolean isGameOver = false;
