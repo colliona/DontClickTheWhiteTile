@@ -4,8 +4,7 @@ Dont Click The White Tile
 
 Version
 ------
-##### 1.0-beta
-In active development.
+##### 1.0
 
 Description
 ------
@@ -19,8 +18,8 @@ All you need is your mouse, and it's left button.
 
  - Game :
 
-   - (Potentionally) infinite gameplay
-   - Multiple difficulties to chose from
+   - (Potentially) infinite gameplay
+   - Multiple difficulties to choose from
    - Game over screen
    - Achievement system
    - Saving high score for each player separately
