@@ -1,8 +1,11 @@
 Dont Click The White Tile
 ======
-#### This program has been created for my Programming Technologies university course.
 #### The copy of the famous android arcade game, don't tap the white tiles, programmed for PC.
 
+
+Purpose
+------
+This program has been created for my Programming Technologies university course.
 
 Version
 ------
